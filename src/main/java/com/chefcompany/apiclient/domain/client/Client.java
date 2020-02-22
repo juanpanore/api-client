@@ -1,5 +1,7 @@
 package com.chefcompany.apiclient.domain.client;
 
+import java.util.Date;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,9 +16,125 @@ public class Client {
 	private String secondName;
 	private String lastName;
 	private String secondSurname;
-	private String sexo;
-	private String birthDate;
-	private String createdDate;
+	private String sex;
+	private Date birthDate;
+	private String email;
+	private Number cellphone;
+	private Date createdDate;
+	private Date modifiedDate;
+	
+	public Client() {
+	}
+	
+	public Client (Builder builder) {
+		
+	}
+	
+	public static Builder builder() {
+		return new Builder();
+	}
+
+	public static class Builder {
+		
+		private String documentType;
+		private String documentNumber;
+		private String firstName;
+		private String secondName;
+		private String lastName;
+		private String secondSurname;
+		private String sex;
+		private Date birthDate;
+		private String email;
+		private Number cellphone;
+	
+		
+		public Builder documentType (String value) {
+			this.documentType = value;
+			return this;
+		}
+		public Builder documentNumber (String value) {
+			this.documentNumber = value;
+			return this;
+		}
+		public Builder firstName (String value) {
+			this.firstName = value;
+			return this;
+		}
+		public Builder secondName (String value) {
+			this.secondName = value;
+			return this;
+		}
+		public Builder lastName (String value) {
+			this.lastName = value;
+			return this;
+		}
+		public Builder secondSurname (String value) {
+			this.secondSurname = value;
+			return this;
+		}
+		public Builder sex (String value) {
+			this.sex = value;
+			return this;
+		}
+		public Builder birthDate (Date value) {
+			this.birthDate = value;
+			return this;
+		}
+		public Builder email (String value) {
+			this.email = value;
+			return this;
+		}
+		public Builder cellphone (Number value) {
+			this.cellphone = value;
+			return this;
+		}
+		
+		public Client build() {
+			return new Client(this);
+		}
+		
+	}
+	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Number getCellphone() {
+		return cellphone;
+	}
+
+	public void setCellphone(Number cellphone) {
+		this.cellphone = cellphone;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public Date getModifiedDate() {
+		return modifiedDate;
+	}
+
+	public void setModifiedDate(Date modifiedDate) {
+		this.modifiedDate = modifiedDate;
+	}
 
 	public String getId() {
 		return id;
@@ -25,25 +143,6 @@ public class Client {
 	public void setId(String id) {
 		this.id = id;
 	}
-
-	public String getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(String createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	public String getModifiedDate() {
-		return modifiedDate;
-	}
-
-	public void setModifiedDate(String modifiedDate) {
-		this.modifiedDate = modifiedDate;
-	}
-
-	private String modifiedDate;
-
 	public String getDocumentType() {
 		return documentType;
 	}
@@ -92,20 +191,32 @@ public class Client {
 		this.secondSurname = secondSurname;
 	}
 
-	public String getSexo() {
-		return sexo;
+	public String getSex() {
+		return sex;
 	}
 
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
+	
+		
 
-	public String getBirthDate() {
-		return birthDate;
+	@Override
+	public String toString() {
+		return "Client [id=" + id + ", documentType=" + documentType + ", documentNumber=" + documentNumber
+				+ ", firstName=" + firstName + ", secondName=" + secondName + ", lastName=" + lastName
+				+ ", secondSurname=" + secondSurname + ", sex=" + sex + ", birthDate=" + birthDate + ", createdDate="
+				+ createdDate + ", modifiedDate=" + modifiedDate + ", getBirthDate()=" + getBirthDate()
+				+ ", getCreatedDate()=" + getCreatedDate() + ", getModifiedDate()=" + getModifiedDate() + ", getId()="
+				+ getId() + ", getDocumentType()=" + getDocumentType() + ", getDocumentNumber()=" + getDocumentNumber()
+				+ ", getFirstName()=" + getFirstName() + ", getSecondName()=" + getSecondName() + ", getLastName()="
+				+ getLastName() + ", getSecondSurname()=" + getSecondSurname() + ", getsex()=" + getSex()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
 	}
+	
+		
 
-	public void setBirthDate(String birthDate) {
-		this.birthDate = birthDate;
-	}
+
 
 }

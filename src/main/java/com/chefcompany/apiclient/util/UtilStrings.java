@@ -13,4 +13,18 @@ public final class UtilStrings {
 			throw new IllegalArgumentException(message);
 		}
 	}
+	
+	public static boolean isEmptyOrNull(String val) {
+		if (val == null || val.trim().isEmpty()) {
+			return true;
+		}
+		return false;
+	}
+	
+	public static void requieresNoNullOrNoEmpty(String val, String mensaje) {
+		if (isEmptyOrNull(val)) {
+			throw new IllegalArgumentException(mensaje);
+		}
+
+	}
 }

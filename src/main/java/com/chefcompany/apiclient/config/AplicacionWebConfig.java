@@ -15,7 +15,7 @@ public class AplicacionWebConfig {
 	        return new WebMvcConfigurerAdapter() {
 	            @Override
 	            public void addCorsMappings(CorsRegistry registry) {
-	                registry.addMapping("/api/v1/**");
+	                registry.addMapping("/api/v1/**").allowedMethods("DELETE","PUT","POST","GET");
 	            }
 	        };
 	    }

@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 import java.util.Date;
 
 public interface ILoteRepository extends ReactiveCrudRepository<Lote,Integer> {
-    @Query("{'idLote':?0")
+    @Query("{'idLote':?0}")
     Mono<Lote> findById(int idLote);
 
 }

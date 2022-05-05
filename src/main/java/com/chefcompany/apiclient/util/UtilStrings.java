@@ -1,5 +1,7 @@
 package com.chefcompany.apiclient.util;
 
+import com.chefcompany.apiclient.controllers.marca.MarcaController;
+
 public final class UtilStrings {
 
 	public static void requiresPattern (String s, String pattern, String message) {

@@ -9,4 +9,6 @@ public class Constants {
     public static final String TXT_PATTER_EMAIL = "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
     public static final String TXT_BAD_EMAIL = "Email is not valid";
 
+    public static final String TXT_ERROR_CREAR = "No puede crear una marca ya existente!!!";
+
 }

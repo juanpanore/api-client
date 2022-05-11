@@ -11,29 +11,28 @@ import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
 @RestController
-@RequestMapping("/marca")
+@RequestMapping("/api/v1/rest")
 public class MarcaController {
 
     @Autowired
     private MarcaService marcaService;
 
-    @GetMapping("/listar")
+    @GetMapping("/marcas")
     public Flux<Marca> get() {
 
         return marcaService.get();
     }
 
-    @PostMapping("/crear")
+    @PostMapping("/marcas")
     public Mono<Marca> create(@Valid @RequestBody Marca marca) {
         return marcaService.save(marca);
     }
 
-    @DeleteMapping("/borrar")
+    @DeleteMapping("/marcas")
     public Mono<ResponseEntity<Void>> delete (@RequestParam(required = true) String idMarca){
 
         return marcaService.delete(idMarca).then(Mono.just(new ResponseEntity<Void>(HttpStatus.OK)))
                 .defaultIfEmpty(new ResponseEntity<Void>(HttpStatus.NOT_FOUND));
-
 
     }
 }

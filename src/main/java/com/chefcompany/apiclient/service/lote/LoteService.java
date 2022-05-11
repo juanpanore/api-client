@@ -18,4 +18,9 @@ public class LoteService {
 
        return iLoteRepository.findById(idLote);
     }
+
+    public Mono<Lote> save( Lote lote ) {
+        lote.setFechaIngreso(new Date());
+        return iLoteRepository.save(lote);
+    }
 }

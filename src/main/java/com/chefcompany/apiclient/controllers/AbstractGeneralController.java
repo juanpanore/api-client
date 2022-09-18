@@ -11,7 +11,8 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public abstract class AbstractGeneralController {
+public abstract class AbstractGeneralController implements java.io.Serializable {
+
 
 	@Autowired
 	private Environment varEntorno;

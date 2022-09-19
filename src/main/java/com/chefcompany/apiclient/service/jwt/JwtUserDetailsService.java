@@ -34,7 +34,6 @@ public class JwtUserDetailsService implements UserDetailsService {
 
     public Mono<RedUser> save(RedUser redUser) {
         redUser.setPassword(bcryptEncoder.encode(redUser.getPassword()));
-        System.out.println("voy a registar en db nuevo usuario "+redUser.getUsername() + " y password "+ redUser.getPassword());
         return iredUserRepository.save(redUser);
     }
 

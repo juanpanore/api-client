@@ -51,7 +51,6 @@ public class JwtAuthenticationController {
 
 	@PostMapping("/register")
 	public Mono<RedUser> saveUser(@RequestBody RedUser user)  {
-		System.out.println("voy a registrar un nuevo usuario");
 		return userDetailsService.save(user);
 	}
 

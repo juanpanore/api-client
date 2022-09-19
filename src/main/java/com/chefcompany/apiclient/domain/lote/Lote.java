@@ -1,4 +1,4 @@
-package com.chefcompany.apiclient.domain.client;
+package com.chefcompany.apiclient.domain.lote;
 
 
 import org.springframework.data.annotation.Id;

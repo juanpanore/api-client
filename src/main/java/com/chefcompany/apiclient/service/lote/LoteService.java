@@ -1,6 +1,6 @@
 package com.chefcompany.apiclient.service.lote;
 
-import com.chefcompany.apiclient.domain.client.Lote;
+import com.chefcompany.apiclient.domain.lote.Lote;
 import com.chefcompany.apiclient.repository.lote.ILoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

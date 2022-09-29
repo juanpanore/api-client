@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.chefcompany.apiclient.domain.reduser.RedUser;
 import com.chefcompany.apiclient.repository.reduser.IRedUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,7 +20,7 @@ public class JwtUserDetailsService implements UserDetailsService {
     @Autowired
     private IRedUserRepository iredUserRepository;
 
-    @Autowired
+   @Autowired
     private PasswordEncoder bcryptEncoder;
 
     @Override

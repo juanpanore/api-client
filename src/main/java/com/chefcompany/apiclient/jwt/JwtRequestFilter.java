@@ -1,4 +1,4 @@
-package com.chefcompany.apiclient.config;
+package com.chefcompany.apiclient.controllers.jwt;
 
 import java.io.IOException;
 

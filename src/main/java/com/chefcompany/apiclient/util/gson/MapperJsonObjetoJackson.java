@@ -1,6 +1,5 @@
-package com.chefcompany.apiclient.util;
+package com.chefcompany.apiclient.util.gson;
 
-import co.com.suramericana.adminbotsapi.comun.utilidades.MapperJsonObjeto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.*;
@@ -43,9 +42,7 @@ public class MapperJsonObjetoJackson implements MapperJsonObjeto {
                     .registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
                         @Override
                         public LocalDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-                            LocalDateTime prueba = LocalDateTime.parse(json.getAsString(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-                            System.out.println(prueba);
-                            return prueba;
+                            return LocalDateTime.parse(json.getAsString(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
                         }
                     })
                     .create();

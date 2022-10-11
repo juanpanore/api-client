@@ -2,10 +2,10 @@ package com.chefcompany.apiclient.controllers.jwt;
 
 import java.util.Objects;
 
-import com.chefcompany.apiclient.config.JwtTokenUtil;
 import com.chefcompany.apiclient.domain.jwt.JwtRequest;
 import com.chefcompany.apiclient.domain.jwt.JwtResponse;
 import com.chefcompany.apiclient.domain.reduser.RedUser;
+import com.chefcompany.apiclient.jwt.JwtTokenUtil;
 import com.chefcompany.apiclient.service.jwt.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -3,6 +3,7 @@ package com.chefcompany.apiclient.service.client;
 import java.util.Date;
 import java.util.Objects;
 
+import com.chefcompany.apiclient.util.MessageSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,13 @@ public class ClientService {
 	@Autowired
 	private IClientRepository iclientRepository;
 
+	private final MessageSender<Client> messageSenderClient;
+
+	public ClientService(MessageSender<Client> messageSenderClient) {
+		this.messageSenderClient = messageSenderClient;
+	}
+
+
 	public Mono<Client> get(String documentType, String documentNumber) {
 
 		if (!Objects.isNull(documentType) && !Objects.isNull(documentNumber)) {
@@ -39,7 +47,13 @@ public class ClientService {
 
 		validationData(client);
 		client.setCreatedDate(new Date());
-		return iclientRepository.save(client);
+		Mono<Client> savedClient = iclientRepository.save(client);
+		savedClient.subscribe(
+				value -> messageSenderClient.execute(client,value.getId()),
+				error -> error.printStackTrace(),
+				() -> System.out.println("Messages completed delivery")
+		);
+		return savedClient;
 	}
 
 	public Mono<Client> update(String clientId, Client client) {

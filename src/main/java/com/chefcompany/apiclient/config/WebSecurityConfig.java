@@ -1,5 +1,7 @@
 package com.chefcompany.apiclient.config;
 
+import com.chefcompany.apiclient.jwt.JwtAuthenticationEntryPoint;
+import com.chefcompany.apiclient.jwt.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

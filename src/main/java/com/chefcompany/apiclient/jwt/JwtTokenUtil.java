@@ -1,4 +1,4 @@
-package com.chefcompany.apiclient.controllers.jwt;
+package com.chefcompany.apiclient.jwt;
 
 import java.io.Serializable;
 import java.util.Date;

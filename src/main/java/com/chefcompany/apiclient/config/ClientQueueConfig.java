@@ -1,18 +1,40 @@
-package com.chefcompany.apiclient.mensajeria.client;
+package com.chefcompany.apiclient.config;
 
 
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-@Getter
-@Setter
+
 @Configuration
-@ConfigurationProperties(prefix = "mensaje.certificacion-usuarios.borrado")
-public class PropertiesClientQueue {
+@ConfigurationProperties(prefix = "client.procesar")
+public class ClientQueueConfig {
 
     private String exchangeName;
-    private String routingKey;
+    private String routingKeyName;
     private String queueName;
+
+    public String getExchangeName() {
+        return exchangeName;
+    }
+
+    public String getRoutingKeyName() {
+        return routingKeyName;
+    }
+
+    public void setRoutingKeyName(String routingKeyName) {
+        this.routingKeyName = routingKeyName;
+    }
+
+    public String getQueueName() {
+        return queueName;
+    }
+
+    public void setExchangeName(String exchangeName) {
+        this.exchangeName = exchangeName;
+    }
+
+
+    public void setQueueName(String queueName) {
+        this.queueName = queueName;
+    }
 }

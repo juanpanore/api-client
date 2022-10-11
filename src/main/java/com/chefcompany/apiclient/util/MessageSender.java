@@ -1,5 +1,5 @@
-package com.chefcompany.apiclient.service.client;
+package com.chefcompany.apiclient.util;
 
 public interface MessageSender<T> {
-    void execute(T message, Long idMessage);
+    void execute(T message, String idMessage);
 }

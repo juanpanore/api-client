@@ -1,11 +1,9 @@
 package com.chefcompany.apiclient.mensajeria.client;
 
 
+import com.chefcompany.apiclient.domain.client.Client;
 import com.chefcompany.apiclient.service.client.ClientService;
 import com.chefcompany.apiclient.util.gson.MapperJsonObjeto;
-import org.springframework.amqp.core.Message;
-import org.springframework.amqp.core.MessageBuilder;
-import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,23 +11,29 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
-public class ReceiverMessages {
+public class ReceiverMessagesBroker {
 
     @Autowired
     private ClientService clientService;
 
-    @RabbitListener(queues = "${client.queue-procesar.cliente.queue-name}")
+    private final MapperJsonObjeto mapperJsonObjeto;
+
+    public ReceiverMessagesBroker(MapperJsonObjeto mapperJsonObjeto) {
+        this.mapperJsonObjeto = mapperJsonObjeto;
+    }
+
+
+    @RabbitListener(queues = "${client.queue-recibir.cliente.queue-name}")
     public void receiveMessageProcessClient(String message) {
         try {
-
-            //TODO Implementar JSONToObject
-            //clientService.save();
-
-            System.out.println(message);
+            clientService.save(obtenerObjetoDeMensaje(message).get());
         } catch (Exception e) {
             System.out.println(e);
-
         }
+    }
+
+    private Optional<Client> obtenerObjetoDeMensaje(String mensaje) {
+        return mapperJsonObjeto.ejecutar(mensaje, Client.class);
     }
 
 

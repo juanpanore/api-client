@@ -1,7 +1,9 @@
 package com.chefcompany.apiclient.mensajeria.client;
 
 
+import com.chefcompany.apiclient.config.ClientQueueConfig;
 import com.chefcompany.apiclient.domain.client.Client;
+import com.chefcompany.apiclient.util.MessageSender;
 import com.chefcompany.apiclient.util.gson.MapperJsonObjeto;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageBuilder;
@@ -13,27 +15,33 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
-
-
-
-public class MessageSender  implements com.chefcompany.apiclient.util.MessageSender<Client> {
+public class MessageSenderBroker implements MessageSender<Client> {
 
     private final RabbitTemplate rabbitTemplate;
     private final MapperJsonObjeto mapperJsonObjeto;
+    private final ClientQueueConfig clientQueueConfig;
 
-    public MessageSender(RabbitTemplate rabbitTemplate, MapperJsonObjeto mapperJsonObjeto) {
+    public MessageSenderBroker(RabbitTemplate rabbitTemplate, MapperJsonObjeto mapperJsonObjeto, ClientQueueConfig clientQueueConfig) {
         this.rabbitTemplate = rabbitTemplate;
         this.mapperJsonObjeto = mapperJsonObjeto;
+        this.clientQueueConfig = clientQueueConfig;
     }
 
-    public void sendMesagge(Object mensaje, Long idMensajeEmisor, String exchange, String routingKey) {
+    @Override
+    public void execute(Client message, String idMessage) {
+        MessageProperties propiedadesMensaje = generarPropiedadesMensaje(idMessage);
 
+        Optional<Message> cuerpoMensaje = obtenerCuerpoMensaje(message, propiedadesMensaje);
+        if (!cuerpoMensaje.isPresent()) {
+            return;
+        }
+        rabbitTemplate.convertAndSend(clientQueueConfig.getExchangeName(), clientQueueConfig.getRoutingKeyName(), cuerpoMensaje.get());
     }
 
-    private MessageProperties generarPropiedadesMensaje(Long idMensajeEmisor ) {
+    private MessageProperties generarPropiedadesMensaje(String idMessageSender ) {
         return MessagePropertiesBuilder.newInstance()
                 .setContentType(MessageProperties.CONTENT_TYPE_JSON)
-                .setHeader("idMensaje", String.valueOf(idMensajeEmisor))
+                .setHeader("idMensaje", idMessageSender)
                 .build();
     }
 
@@ -48,15 +56,4 @@ public class MessageSender  implements com.chefcompany.apiclient.util.MessageSen
     }
 
 
-    @Override
-    public void execute(Client message, Long idMessage, String exchange, String routingKey) {
-        MessageProperties propiedadesMensaje = generarPropiedadesMensaje(idMessage);
-
-        Optional<Message> cuerpoMensaje = obtenerCuerpoMensaje(message, propiedadesMensaje);
-        if (!cuerpoMensaje.isPresent()) {
-            return;
-        }
-
-        rabbitTemplate.convertAndSend(exchange, routingKey, cuerpoMensaje.get());
-    }
 }

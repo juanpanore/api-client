@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.chefcompany'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = '17'
 
 repositories {
 	mavenCentral()
@@ -15,15 +15,14 @@ repositories {
 dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation:2.3.0.RELEASE'
 
 	// DB
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-cloud-connectors', version: '2.2.13.RELEASE'
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
 
-
 	// JWT
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-validation:2.3.0.RELEASE'
 	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 	implementation group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '4.0.0'
 	implementation group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '2.2.3-1'

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/rest")
@@ -19,7 +20,7 @@ public class ImpuestosController {
     @GetMapping("/impuestos")
     public ResultadoImpuestos get(@RequestParam(required = true) Integer cantidad, String[] nombresImpuestos, Integer valor) {
 
-        List<String> listaNombresImpuestos = Arrays.stream(nombresImpuestos).toList();
+        List<String> listaNombresImpuestos = Arrays.stream(nombresImpuestos).collect(Collectors.toList());
         System.out.println("total impuestos " + listaNombresImpuestos.size() );
         listaNombresImpuestos.forEach(nombre -> System.out.println("nombres de impuestos " + nombre));
         return impuestosService.get(cantidad,listaNombresImpuestos,valor);

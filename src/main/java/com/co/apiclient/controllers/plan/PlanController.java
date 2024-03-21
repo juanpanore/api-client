@@ -26,7 +26,7 @@ public class PlanController {
     }
 
     @GetMapping("/plans/{idPlan}")
-    public Mono<Plan> create(@PathVariable Integer idPlan) {
+    public Mono<Plan> get(@PathVariable Integer idPlan) {
         return planService.get(idPlan);
 
     }

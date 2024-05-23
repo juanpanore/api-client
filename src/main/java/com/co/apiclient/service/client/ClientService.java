@@ -42,6 +42,17 @@ public class ClientService {
 
 	}
 
+	public Mono<Client> getByEmail(String email) {
+
+		if (!Objects.isNull(email)) {
+			UtilStrings.requiresPattern(email, Constants.TXT_PATTER_EMAIL,
+					String.format(Constants.TXT_EXPECT_VALUE, email ));
+		}
+
+		return iclientRepository.findByEmail(email);
+
+	}
+
 	public Mono<Client> save(Client client) {
 
 		validationData(client);

@@ -11,4 +11,7 @@ public interface IClientRepository extends ReactiveCrudRepository<Client, String
 
 	@Query("{ 'documentType': ?0, 'documentNumber': ?1}")
 	Mono<Client> findByDocument(String documentType, String documentNumber);
+
+	@Query("{ 'email': ?0 }")
+	Mono<Client> findByEmail(String email);
 }

@@ -34,6 +34,12 @@ public class ClientController {
 		return clientService.get(documentType, documentNumber);
 	}
 
+	@GetMapping("/client/email")
+	public Mono<Client> getByEmail(@RequestParam(required = true) String email) {
+
+		return clientService.getByEmail(email);
+	}
+
 	@PostMapping("/client")
 	public Mono<Client> create(@Valid @RequestBody Client client) {
 		return clientService.save(client);

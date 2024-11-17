@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Set up Java version
         uses: actions/setup-java@v1
@@ -22,7 +22,7 @@ jobs:
           java-version: '11'
 
       - name: Checkout project sources
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
@@ -34,7 +34,7 @@ jobs:
         run: ./gradlew build
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: java-app
           path: '${{ github.workspace }}/build/libs/api-client-0.0.1-SNAPSHOT.jar'
@@ -48,7 +48,7 @@ jobs:
     
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: java-app
 

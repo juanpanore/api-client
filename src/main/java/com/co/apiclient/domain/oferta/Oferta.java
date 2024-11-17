@@ -8,9 +8,10 @@ public class Oferta {
 
     @Id
     private String id;
-
     private Integer idProducto;
-
+    private Double precioOferta;
+    private Double precioOriginal;
+    private String porcentajeDescuento;
     public String getId() {
         return id;
     }
@@ -51,7 +52,5 @@ public class Oferta {
         this.porcentajeDescuento = porcentajeDescuento;
     }
 
-    private Double precioOferta;
-    private Double precioOriginal;
-    private String porcentajeDescuento;
+
 }

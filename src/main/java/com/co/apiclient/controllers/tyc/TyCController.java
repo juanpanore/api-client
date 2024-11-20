@@ -1,7 +1,7 @@
-package com.co.apiclient.controllers.favoritos;
+package com.co.apiclient.controllers.tyc;
 
-import com.co.apiclient.domain.favorito.Favorito;
-import com.co.apiclient.service.favorito.FavoritosService;
+import com.co.apiclient.domain.tyc.TyC;
+import com.co.apiclient.service.tyc.TyCService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,14 +11,14 @@ import reactor.core.publisher.Flux;
 
 @RestController
 @RequestMapping("/api/v1/rest")
-public class FavoritosController {
+public class TyCController {
 
     @Autowired
-    private FavoritosService favoritosService;
+    private TyCService tyCService;
 
-    @GetMapping("/favoritos/{email}")
-    public Flux<Favorito> get(@PathVariable String email) {
+    @GetMapping("/tyc/{tipoUsuario}")
+    public Flux<TyC> get(@PathVariable String tipoUsuario) {
 
-        return favoritosService.getByEmail(email);
+        return tyCService.getByTipoUsuario(tipoUsuario);
     }
 }

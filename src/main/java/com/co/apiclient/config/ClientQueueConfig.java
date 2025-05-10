@@ -3,10 +3,12 @@ package com.co.apiclient.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 
 @Configuration
 @ConfigurationProperties(prefix = "client.procesar")
+@PropertySource("classpath:client.properties")
 public class ClientQueueConfig {
 
     private String exchangeName;
